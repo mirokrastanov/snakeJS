@@ -26,11 +26,11 @@ export const game = {
         ctx.fillRect(x * rectSize, y * rectSize, rectSize, rectSize);
     },
     start: function () {
-        setInterval(game.main, 100); 
+        setInterval(game.main, 100);
     },
     tick: function () {
-        tail.x = snake.x;
-        tail.y = snake.y;
+        tail.segments.push({ x: snake.x, y: snake.y });
+        while (tail.segments.length > tail.size) tail.segments.shift();
         snake.y += speed.y;
         snake.x += speed.x;
         if (snake.y == -1) snake.y = vSize - 1;
@@ -42,7 +42,7 @@ export const game = {
         game.clear();
         game.drawGrid();
         game.drawRect(snake.x, snake.y, 'purple');
-        game.drawRect(tail.x, tail.y, 'green');
+        tail.segments.forEach(seg => game.drawRect(seg.x, seg.y, 'green'));
     },
     main: function () {
         game.tick();
