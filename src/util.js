@@ -1,4 +1,4 @@
-import { ctx, width, height, hSize, vSize, rectSize, snake } from './app.js';
+import { ctx, width, height, hSize, vSize, rectSize, snake, speed } from './app.js';
 
 export const game = {
     drawGrid: function () {
@@ -29,6 +29,13 @@ export const game = {
         setInterval(game.drawScene, 100); // draws the scene every 100ms
     },
     drawScene: function () {
+        snake.y += speed.y;
+        snake.x += speed.x;
+        if (snake.y == -1) snake.y = vSize - 1;
+        if (snake.y == vSize) snake.y = 0;
+        if (snake.x == -1) snake.x = hSize - 1;
+        if (snake.x == hSize) snake.x = 0;
+
         game.clearGrid();
         game.drawGrid();
         game.drawRect(snake.x, snake.y, 'purple');
