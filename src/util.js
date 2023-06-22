@@ -26,6 +26,7 @@ export const game = {
         ctx.fillRect(x * rectSize + 1, y * rectSize + 1, rectSize - 2, rectSize - 2);
     },
     start: function () {
+        game.spawnApple();
         setInterval(game.main, 100);
     },
     tick: function () {
@@ -37,7 +38,10 @@ export const game = {
         if (snake.y == vSize) snake.y = 0;
         if (snake.x == -1) snake.x = hSize - 1;
         if (snake.x == hSize) snake.x = 0;
-        if (snake.x == apple.x && snake.y == apple.y) tail.size++;
+        if (snake.x == apple.x && snake.y == apple.y) {
+            tail.size++;
+            game.spawnApple();
+        }
     },
     drawScene: function () {
         game.clear();
@@ -49,6 +53,10 @@ export const game = {
     main: function () {
         game.tick();
         game.drawScene();
+    },
+    spawnApple: function () {
+        apple.x = Math.floor(Math.random() * hSize);
+        apple.y = Math.floor(Math.random() * vSize);
     },
 
 }
