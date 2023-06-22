@@ -1,4 +1,4 @@
-import { ctx, width, height, hSize, vSize, rectSize, snake, speed, tail } from './app.js';
+import { ctx, width, height, hSize, vSize, rectSize, snake, speed, tail, apple } from './app.js';
 
 export const game = {
     drawGrid: function () {
@@ -23,7 +23,7 @@ export const game = {
     },
     drawRect: function (x, y, color) {
         ctx.fillStyle = color;
-        ctx.fillRect(x * rectSize, y * rectSize, rectSize, rectSize);
+        ctx.fillRect(x * rectSize + 1, y * rectSize + 1, rectSize - 2, rectSize - 2);
     },
     start: function () {
         setInterval(game.main, 100);
@@ -37,12 +37,14 @@ export const game = {
         if (snake.y == vSize) snake.y = 0;
         if (snake.x == -1) snake.x = hSize - 1;
         if (snake.x == hSize) snake.x = 0;
+        if (snake.x == apple.x && snake.y == apple.y) tail.size++;
     },
     drawScene: function () {
         game.clear();
         game.drawGrid();
         game.drawRect(snake.x, snake.y, 'purple');
         tail.segments.forEach(seg => game.drawRect(seg.x, seg.y, 'green'));
+        game.drawRect(apple.x, apple.y, 'red');
     },
     main: function () {
         game.tick();

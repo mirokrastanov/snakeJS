@@ -9,6 +9,7 @@ export const height = canvas.height;
 export const hSize = 20;
 export const vSize = 20;
 export const rectSize = width / hSize;
+export const apple = { x: 5, y: 15 };
 export const snake = { x: 10, y: 10 };
 export const tail = {
     segments: [],
