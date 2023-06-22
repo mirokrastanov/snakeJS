@@ -15,10 +15,22 @@ export const snake = {
 };
 
 window.addEventListener('keydown', (e) => {
-    if (e.key == 'ArrowUp') snake.y--;
-    else if (e.key == 'ArrowDown') snake.y++;
-    else if (e.key == 'ArrowLeft') snake.x--;
-    else if (e.key == 'ArrowRight') snake.x++;
+    if (e.key == 'ArrowUp') {
+        snake.y--;
+        if (snake.y == -1) snake.y = vSize - 1;
+    }
+    else if (e.key == 'ArrowDown') {
+        snake.y++;
+        if (snake.y == vSize) snake.y = 0;
+    }
+    else if (e.key == 'ArrowLeft') {
+        snake.x--;
+        if (snake.x == -1) snake.x = hSize - 1;
+    }
+    else if (e.key == 'ArrowRight') {
+        snake.x++;
+        if (snake.x == hSize) snake.x = 0;
+    }
     else return;
 });
 
