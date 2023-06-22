@@ -9,10 +9,25 @@ export const height = canvas.height;
 export const hSize = 20;
 export const vSize = 20;
 export const rectSize = width / hSize;
+export const snake = {
+    x: 10,
+    y: 10,
+};
+
+window.addEventListener('keydown', (e) => {
+    if (e.key == 'ArrowUp') snake.y--;
+    else if (e.key == 'ArrowDown') snake.y++;
+    else if (e.key == 'ArrowLeft') snake.x--;
+    else if (e.key == 'ArrowRight') snake.x++;
+    else return;
+    util.clearGrid();
+    util.drawGrid();
+    
+    util.drawRect(snake.x, snake.y, 'purple');
+});
 
 
-util.startGame(false);
+util.startGame();
 
-util.drawRect(8, 15, 'orange');
 
 

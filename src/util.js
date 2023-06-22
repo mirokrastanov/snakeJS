@@ -1,4 +1,4 @@
-import { ctx, width, height, hSize, vSize, rectSize } from './app.js';
+import { ctx, width, height, hSize, vSize, rectSize, snake } from './app.js';
 
 export const util = {
     drawGrid: function (hideGrid) {
@@ -29,8 +29,9 @@ export const util = {
     startGame: function (hideGrid = false) {
         this.clearGrid();
         this.drawGrid(hideGrid);
-
+        this.drawRect(snake.x, snake.y, 'purple');
 
     },
+
 
 }
