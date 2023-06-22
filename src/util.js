@@ -1,5 +1,7 @@
 import { ctx, width, height, hSize, vSize, rectSize, snake, speed, tail, apple } from './app.js';
 
+let interval = null;
+
 export const game = {
     drawGrid: function () {
         ctx.strokeStyle = '#999999';
@@ -26,8 +28,16 @@ export const game = {
         ctx.fillRect(x * rectSize + 1, y * rectSize + 1, rectSize - 2, rectSize - 2);
     },
     start: function () {
+        if (interval != null) clearInterval(interval);
+        snake.x = 10;
+        snake.y = 10;
+        tail.segments.length = 0;
+        tail.size = 3;
+        speed.x = 1;
+        speed.y = 0;
+
         game.spawnApple();
-        setInterval(game.main, 100);
+        interval = setInterval(game.main, 100);
     },
     tick: function () {
         tail.segments.push({ x: snake.x, y: snake.y });
@@ -38,6 +48,11 @@ export const game = {
         if (snake.y == vSize) snake.y = 0;
         if (snake.x == -1) snake.x = hSize - 1;
         if (snake.x == hSize) snake.x = 0;
+
+        tail.segments.forEach(seg => {
+            if (seg.x == snake.x && seg.y == snake.y) game.start();
+        });
+
         if (snake.x == apple.x && snake.y == apple.y) {
             tail.size++;
             game.spawnApple();
