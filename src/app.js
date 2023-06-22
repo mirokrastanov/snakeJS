@@ -10,6 +10,7 @@ export const hSize = 20;
 export const vSize = 20;
 export const rectSize = width / hSize;
 export const snake = { x: 10, y: 10 };
+export const tail = { x: 9, y: 10 };
 export const speed = { x: 1, y: 0 };
 
 window.addEventListener('keydown', (e) => {
@@ -21,7 +22,7 @@ window.addEventListener('keydown', (e) => {
 });
 
 
-game.startGame();
+game.start();
 
 
 
