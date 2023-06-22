@@ -82,7 +82,6 @@ export const game = {
         const choice = confirm(`Game Over!\nYour Score: ${(tail.size - 3) * 1000}\n\nPlay Again?`);
         if (choice == true) return game.start();
         else if (choice == false) return game.genEndScreen();
-        console.log('tyk');
     },
     genEndScreen: function () {
         let button = document.querySelector('#end-btn');

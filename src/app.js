@@ -17,11 +17,23 @@ export const tail = {
 };
 export const speed = { x: 1, y: 0 };
 
+let prevTime = null;
 window.addEventListener('keydown', (e) => {
-    if (e.key == 'ArrowUp') [speed.y, speed.x] = [-1, 0];
-    else if (e.key == 'ArrowDown') [speed.y, speed.x] = [1, 0];
-    else if (e.key == 'ArrowLeft') [speed.y, speed.x] = [0, -1];
-    else if (e.key == 'ArrowRight') [speed.y, speed.x] = [0, 1];
+    console.log(e.timeStamp);
+    if (prevTime == null) prevTime = e.timeStamp;
+    else {
+        if (e.timeStamp - prevTime <= 100) {
+            prevTime = e.timeStamp;
+            return;
+        } else {
+            prevTime = e.timeStamp;
+        }
+    }
+
+    if (e.key == 'ArrowUp' && speed.y == 0) [speed.y, speed.x] = [-1, 0];
+    else if (e.key == 'ArrowDown' && speed.y == 0) [speed.y, speed.x] = [1, 0];
+    else if (e.key == 'ArrowLeft' && speed.x == 0) [speed.y, speed.x] = [0, -1];
+    else if (e.key == 'ArrowRight' && speed.x == 0) [speed.y, speed.x] = [0, 1];
     else return;
 });
 
