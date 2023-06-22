@@ -40,6 +40,7 @@ export const game = {
         interval = setInterval(game.main, 100);
     },
     tick: function () {
+        game.updateScore();
         tail.segments.push({ x: snake.x, y: snake.y });
         while (tail.segments.length > tail.size) tail.segments.shift();
         snake.y += speed.y;
@@ -50,7 +51,7 @@ export const game = {
         if (snake.x == hSize) snake.x = 0;
 
         tail.segments.forEach(seg => {
-            if (seg.x == snake.x && seg.y == snake.y) game.start();
+            if (seg.x == snake.x && seg.y == snake.y) game.gameOver();
         });
 
         if (snake.x == apple.x && snake.y == apple.y) {
@@ -76,5 +77,23 @@ export const game = {
             if (seg.x == apple.x && seg.y == apple.y) game.spawnApple();
         });
     },
-
+    gameOver: function () {
+        clearInterval(interval);
+        const choice = confirm(`Game Over!\nYour Score: ${(tail.size - 3) * 1000}\n\nPlay Again?`);
+        if (choice == true) return game.start();
+        else if (choice == false) return game.genEndScreen();
+        console.log('tyk');
+    },
+    genEndScreen: function () {
+        let button = document.querySelector('#end-btn');
+        button.style.display = 'block';
+        button.addEventListener('click', (e) => {
+            game.start();
+            button.style.display = 'none';
+        });
+    },
+    updateScore: function () {
+        let score = (tail.size - 3) * 1000;
+        document.querySelector('#score').textContent = `Score: ${score} pts`;
+    },
 }
