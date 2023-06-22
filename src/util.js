@@ -57,6 +57,9 @@ export const game = {
     spawnApple: function () {
         apple.x = Math.floor(Math.random() * hSize);
         apple.y = Math.floor(Math.random() * vSize);
+        tail.segments.forEach(seg => {
+            if (seg.x == apple.x && seg.y == apple.y) game.spawnApple();
+        });
     },
 
 }
