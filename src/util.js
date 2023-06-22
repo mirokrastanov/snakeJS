@@ -1,9 +1,8 @@
 import { ctx, width, height, hSize, vSize, rectSize, snake } from './app.js';
 
-export const util = {
-    drawGrid: function (hideGrid) {
-        if (hideGrid) ctx.strokeStyle = 'white';
-        else ctx.strokeStyle = '#999999';
+export const game = {
+    drawGrid: function () {
+        ctx.strokeStyle = '#999999';
         ctx.beginPath();
 
         for (let x = 1; x < hSize; x++) {
@@ -26,12 +25,13 @@ export const util = {
         ctx.fillStyle = color;
         ctx.fillRect(x * rectSize, y * rectSize, rectSize, rectSize);
     },
-    startGame: function (hideGrid = false) {
-        this.clearGrid();
-        this.drawGrid(hideGrid);
-        this.drawRect(snake.x, snake.y, 'purple');
-
+    startGame: function () {
+        setInterval(game.drawScene, 100); // draws the scene every 100ms
     },
-
+    drawScene: function () {
+        game.clearGrid();
+        game.drawGrid();
+        game.drawRect(snake.x, snake.y, 'purple');
+    },
 
 }

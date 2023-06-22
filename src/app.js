@@ -1,4 +1,4 @@
-import { util } from "./util.js";
+import { game } from "./util.js";
 
 const canvas = document.querySelector('#canvas');
 /**@type {CanvasRenderingContext2D} */ //enables intellisense
@@ -20,14 +20,10 @@ window.addEventListener('keydown', (e) => {
     else if (e.key == 'ArrowLeft') snake.x--;
     else if (e.key == 'ArrowRight') snake.x++;
     else return;
-    util.clearGrid();
-    util.drawGrid();
-    
-    util.drawRect(snake.x, snake.y, 'purple');
 });
 
 
-util.startGame();
+game.startGame();
 
 
 
