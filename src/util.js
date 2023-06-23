@@ -1,4 +1,4 @@
-import { ctx, width, height, hSize, vSize, rectSize, snake, speed, tail, apple } from './app.js';
+import { ctx, width, height, hSize, vSize, rectSize, snake, speed, tail, apple, inputSpeed } from './app.js';
 
 let interval = null;
 
@@ -35,6 +35,8 @@ export const game = {
         tail.size = 3;
         speed.x = 1;
         speed.y = 0;
+        inputSpeed.x = 1;
+        inputSpeed.y = 0;
 
         game.spawnApple();
         interval = setInterval(game.main, 100);
@@ -43,6 +45,8 @@ export const game = {
         game.updateScore();
         tail.segments.push({ x: snake.x, y: snake.y });
         while (tail.segments.length > tail.size) tail.segments.shift();
+        speed.x = inputSpeed.x;
+        speed.y = inputSpeed.y;
         snake.y += speed.y;
         snake.x += speed.x;
         if (snake.y == -1) snake.y = vSize - 1;
