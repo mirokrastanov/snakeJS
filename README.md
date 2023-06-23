@@ -1,4 +1,4 @@
-# snakeJS (completed! -> README NYI...)
+# snakeJS (completed! --> README NYI...)
 🎮🐍🍎Web-based JavaScript implementation of the popular game - Snake.
 
 
