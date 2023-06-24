@@ -13,9 +13,9 @@
 <br />
 
 ## How to play
-To control the snake use the arrow keys to change its direction. Enjoy the game! <br />
-` ` ⬆️ ` ` <br />
-⬅️⬇️➡️ 
+- To control the snake use the arrow keys to change its direction. Enjoy the game! <br />
+- ` ` ⬆️ ` ` <br />
+- ⬅️⬇️➡️ 
 <br />
 
 ## Game Screenshots
